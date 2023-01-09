@@ -1,8 +1,9 @@
+import React, {useState} from 'react';
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-const App = () => {
-  const expenses = [
+const TEST_EXPENSES = 
+  [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -24,8 +25,16 @@ const App = () => {
     },
   ];
 
+
+const App = () => {
+
+  const [expenses, setExpenses] = useState(TEST_EXPENSES);    
+
   const saveNewExpenseHandler = (newExpense)=>{
-    console.log(newExpense)
+    if(newExpense.title.length>0)
+    {
+      setExpenses( (prevExpenses)=>{return [newExpense, ...prevExpenses]}) 
+    }   
   }
   return (
     <div>
